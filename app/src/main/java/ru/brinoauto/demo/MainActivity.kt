@@ -225,8 +225,7 @@ class MainActivity : Activity() {
             background = gradient(Color.rgb(19, 43, 58), Color.rgb(0, 111, 125), dp(24).toFloat())
         }
         hero.addView(pill("ОБСЛУЖИВАНИЕ И РЕМОНТ", Color.rgb(0, 117, 128)))
-        hero.addView(text("Ваш автомобиль
-в надёжных руках", 25f, white, true).apply {
+        hero.addView(text("Ваш автомобиль\nв надёжных руках", 25f, white, true).apply {
             setPadding(0, dp(15), 0, dp(8))
         })
         hero.addView(text("Специализированный автосервис в Омске", 13f, Color.rgb(214, 230, 235)))

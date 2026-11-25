@@ -55,8 +55,10 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = ink
-        window.navigationBarColor = ink
-        window.decorView.systemUiVisibility = 0
+        window.navigationBarColor = white
+        if (android.os.Build.VERSION.SDK_INT >= 26) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
         showHome()
     }
 
@@ -193,6 +195,13 @@ class MainActivity : Activity() {
             nav.addView(cell, LinearLayout.LayoutParams(0, dp(52), 1f))
         }
         root.addView(nav)
+        root.setOnApplyWindowInsetsListener { _, insets ->
+            val topInset = insets.systemWindowInsetTop.coerceAtLeast(0)
+            val bottomInset = insets.systemWindowInsetBottom.coerceAtLeast(0)
+            header.setPadding(dp(22), SystemBarPadding.withInset(dp(15), topInset), dp(22), dp(16))
+            nav.setPadding(dp(8), dp(8), dp(8), SystemBarPadding.withInset(dp(8), bottomInset))
+            insets
+        }
         setContentView(root)
     }
 
